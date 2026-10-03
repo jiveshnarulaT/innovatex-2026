@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateX 2026 | eCell NSUT - High-Stakes Innovation Arena</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN with Custom Theme Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        felt: {
+                            DEFAULT: '#0A2316',
+                            dark: '#05180E',
+                            light: '#123321',
+                            accent: '#1C4A32'
+                        },
+                        mahogany: {
+                            DEFAULT: '#181210',
+                            dark: '#0F0B09',
+                            light: '#261D1A',
+                            border: '#382823'
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#AA8518',
+                            antique: '#C5A037',
+                            glow: 'rgba(212, 175, 55, 0.25)'
+                        },
+                        parchment: {
+                            DEFAULT: '#F5F0E6',
+                            muted: '#C8BEAC',
+                            dark: '#9A8F7D'
+                        },
+                        poker: {
+                            red: '#D32F2F',
+                            black: '#111111',
+                            cardBg: '#1A1412'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        mono: ['"Courier Prime"', 'monospace']
+                    },
+                    boxShadow: {
+                        'poker': '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.15)',
+                        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.3)',
+                        'inner-felt': 'inset 0 2px 15px rgba(0, 0, 0, 0.8)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Felt Background Texture Overlay */
+        .bg-felt-pattern {
+            background-color: #0A2316;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(20, 60, 38, 0.5) 0%, rgba(5, 24, 14, 0.95) 100%),
+                radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 24px 24px;
+        }
+
+        /* Gold Foil Metallic Border Effect */
+        .gold-border-gradient {
+            border-image: linear-gradient(135deg, #F3E5AB, #D4AF37, #8B6B1B, #D4AF37, #F3E5AB) 1;
+        }
+
+        /* Brass / Antique Card Edge */
+        .brass-box {
+            background: #181210;
+            border: 1px solid #D4AF37;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(212, 175, 55, 0.1);
+        }
+
+        .brass-box:hover {
+            border-color: #F3E5AB;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), 0 0 20px rgba(212, 175, 55, 0.25);
+        }
+
+        /* Poker Chip Spinner Animation */
+        @keyframes chipSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .chip-spin {
+            animation: chipSpin 20s linear infinite;
+        }
+
+        /* Subtle Card Pulse */
+        @keyframes cardPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-card-float {
+            animation: cardPulse 4s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05180E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 5px;
+            border: 2px solid #05180E;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F3E5AB;
+        }
+
+        /* Counter Flip Box Styling */
+        .flip-counter-box {
+            background: linear-gradient(180deg, #1C1512 0%, #0D0908 100%);
+            border: 1px solid #D4AF37;
+            position: relative;
+        }
+        .flip-counter-box::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.7);
+            box-shadow: 0 1px 0 rgba(212, 175, 55, 0.3);
+        }
+
+        /* Suit watermark overlay */
+        .suit-watermark {
+            font-size: 10rem;
+            line-height: 1;
+            opacity: 0.03;
+            user-select: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-felt-pattern text-parchment font-sans antialiased min-h-screen selection:bg-gold selection:text-felt-dark flex flex-col">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-mahogany-dark/95 backdrop-blur-md border-b border-gold/30 shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Badge -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-lg bg-felt-dark border border-gold/60 flex items-center justify-center text-gold text-2xl shadow-md group-hover:scale-105 group-hover:border-gold transition-all">
+                    <span class="text-gold">♠</span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-serif font-bold text-lg text-parchment tracking-wide group-hover:text-gold transition-colors">eCell NSUT</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-gold/10 border border-gold/40 text-gold font-mono uppercase tracking-wider">Dwarka</span>
+                    </div>
+                    <span class="text-xs text-parchment-muted tracking-widest uppercase font-mono block">InnovateX 2026 Arena</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-mono text-sm tracking-wide">
+                <a href="#about" class="text-parchment-muted hover:text-gold transition-colors flex items-center gap-1.5">
+                    <span class="text-gold/50">01.</span> Overview
+                </a>
+                <a href="#events" class="text-parchment-muted hover:text-gold transition-colors flex items-center gap-1.5">
+                    <span class="text-gold/50">02.</span> Events Deck
+                </a>
+                <a href="#schedule" class="text-parchment-muted hover:text-gold transition-colors flex items-center gap-1.5">
+                    <span class="text-gold/50">03.</span> Timeline
+                </a>
+                <a href="#gallery" class="text-parchment-muted hover:text-gold transition-colors flex items-center gap-1.5">
+                    <span class="text-gold/50">04.</span> Gallery
+                </a>
+                <a href="#rules" class="text-parchment-muted hover:text-gold transition-colors flex items-center gap-1.5">
+                    <span class="text-gold/50">05.</span> Rules
+                </a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden sm:flex items-center gap-4">
+                <a href="#register" class="relative inline-flex items-center justify-center px-6 py-2.5 rounded-md bg-gradient-to-r from-gold-dark via-gold to-gold-antique text-felt-dark font-semibold text-sm tracking-wider uppercase shadow-lg hover:shadow-gold-glow hover:scale-105 active:scale-95 transition-all duration-200">
+                    <i class="fa-solid font-bold fa-dice-d20 mr-2 text-xs"></i> Enter Arena
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu" class="md:hidden text-gold text-2xl p-2 hover:text-parchment focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden bg-mahogany-dark border-b border-gold/30 px-6 py-6 space-y-4">
+            <a href="#about" class="mobile-nav-link block text-parchment hover:text-gold font-mono py-2">♦ 01. Overview</a>
+            <a href="#events" class="mobile-nav-link block text-parchment hover:text-gold font-mono py-2">♠ 02. Events Deck</a>
+            <a href="#schedule" class="mobile-nav-link block text-parchment hover:text-gold font-mono py-2">♣ 03. Timeline</a>
+            <a href="#gallery" class="mobile-nav-link block text-parchment hover:text-gold font-mono py-2">♥ 04. Gallery</a>
+            <a href="#rules" class="mobile-nav-link block text-parchment hover:text-gold font-mono py-2">🃏 05. Participant Rules</a>
+            <a href="#register" class="mobile-nav-link block w-full text-center py-3 rounded bg-gold text-felt-dark font-bold uppercase tracking-wider mt-4">
+                Enter Arena Now
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[88vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <!-- Background Poker Suit Accents -->
+            <div class="absolute inset-0 pointer-events-none flex justify-between items-center opacity-10 px-8">
+                <span class="text-9xl text-gold font-serif select-none">♠</span>
+                <span class="text-9xl text-gold font-serif select-none">♦</span>
+            </div>
+
+            <div class="max-w-5xl mx-auto text-center relative z-10 space-y-8">
+                
+                <!-- High-Stakes Pill Badge -->
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-mahogany border border-gold/50 shadow-lg text-xs font-mono text-gold tracking-widest uppercase animate-card-float">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    <span>High-Stakes Entrepreneurial Arena</span>
+                    <span class="text-parchment-muted">•</span>
+                    <span class="text-parchment-muted">October 23–25, 2026</span>
+                </div>
+
+                <!-- Main Hero Headline -->
+                <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-parchment leading-tight">
+                    HIGH-STAKES INNOVATION.<br>
+                    <span class="bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent underline decoration-gold/40 decoration-wavy underline-offset-8">
+                        BET ON YOUR IDEAS.
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-parchment-muted font-sans font-light leading-relaxed">
+                    The premier entrepreneurial & tech arena by <strong class="text-gold font-medium">eCell NSUT</strong>. 48 Hours. 5 High-Stakes Competitions. Zero Excuses. Test your grit at Netaji Subhas University of Technology, Dwarka.
+                </p>
+
+                <!-- Venue Location Tag -->
+                <div class="flex items-center justify-center gap-2 text-xs font-mono text-parchment-dark">
+                    <i class="fa-solid fa-location-dot text-gold"></i>
+                    <span>Netaji Subhas University of Technology, Azad Hind Fauj Marg, Sector-3, Dwarka, New Delhi</span>
+                </div>
+
+                <!-- LIVE VINTAGE CASINO COUNTDOWN TIMER -->
+                <div class="py-6">
+                    <div class="text-xs font-mono text-gold uppercase tracking-widest mb-3 flex items-center justify-center gap-2">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>Event Commences In (Oct 23, 2026 09:00 AM IST)</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-2xl mx-auto" id="countdownTimer">
+                        <!-- Days -->
+                        <div class="flip-counter-box rounded-xl p-4 sm:p-5 text-center shadow-xl">
+                            <span id="timerDays" class="font-mono text-3xl sm:text-5xl font-bold text-gold tracking-wider block">00</span>
+                            <span class="text-[10px] sm:text-xs font-mono uppercase text-parchment-muted tracking-widest mt-1 block">Days</span>
+                        </div>
+                        <!-- Hours -->
+                        <div class="flip-counter-box rounded-xl p-4 sm:p-5 text-center shadow-xl">
+                            <span id="timerHours" class="font-mono text-3xl sm:text-5xl font-bold text-gold tracking-wider block">00</span>
+                            <span class="text-[10px] sm:text-xs font-mono uppercase text-parchment-muted tracking-widest mt-1 block">Hours</span>
+                        </div>
+                        <!-- Minutes -->
+                        <div class="flip-counter-box rounded-xl p-4 sm:p-5 text-center shadow-xl">
+                            <span id="timerMinutes" class="font-mono text-3xl sm:text-5xl font-bold text-gold tracking-wider block">00</span>
+                            <span class="text-[10px] sm:text-xs font-mono uppercase text-parchment-muted tracking-widest mt-1 block">Minutes</span>
+                        </div>
+                        <!-- Seconds -->
+                        <div class="flip-counter-box rounded-xl p-4 sm:p-5 text-center shadow-xl">
+                            <span id="timerSeconds" class="font-mono text-3xl sm:text-5xl font-bold text-gold-light tracking-wider block animate-pulse">00</span>
+                            <span class="text-[10px] sm:text-xs font-mono uppercase text-parchment-muted tracking-widest mt-1 block">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Actions -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                    <a href="#events" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-mahogany border-2 border-gold text-gold hover:bg-gold hover:text-felt-dark font-bold font-mono tracking-wider uppercase shadow-xl transition-all duration-300 text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cards"></i> Inspect Event Hand
+                    </a>
+                    <a href="#register" class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-gradient-to-r from-gold via-gold-antique to-gold-dark text-felt-dark font-extrabold font-mono tracking-wider uppercase shadow-gold-glow hover:scale-105 transition-all duration-300 text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-trophy"></i> Claim Your Seat
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT OVERVIEW SECTION -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-b border-gold/20 bg-mahogany-dark/60 relative">
+            <div class="max-w-6xl mx-auto space-y-12">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <span class="text-xs font-mono text-gold tracking-widest uppercase bg-felt px-3 py-1 rounded border border-gold/30">
+                        ♠ The House Rules & Vision
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-parchment">
+                        The Deck is Stacked in Your Favor.
+                    </h2>
+                    <p class="text-parchment-muted font-sans text-base sm:text-lg leading-relaxed">
+                        Organized by the **Entrepreneurship Cell (eCell) NSUT**, InnovateX 2026 is designed to strip away corporate buzzwords and test pure execution. Whether you are reverse engineering black-box software or launching a real product with zero capital, this is where raw builder talent meets real stakes.
+                    </p>
+                </div>
+
+                <!-- 4 Poker Stat Counters -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="brass-box p-6 rounded-xl text-center space-y-2 relative overflow-hidden group">
+                        <div class="suit-watermark absolute -right-4 -bottom-4 text-gold">♠</div>
+                        <div class="text-gold font-serif text-4xl font-bold">5</div>
+                        <div class="text-parchment font-semibold text-sm uppercase tracking-wider">High-Stakes Events</div>
+                        <p class="text-xs text-parchment-muted">Reverse-eng, 48hr startups, live constraint jams & battles</p>
+                    </div>
+
+                    <div class="brass-box p-6 rounded-xl text-center space-y-2 relative overflow-hidden group">
+                        <div class="suit-watermark absolute -right-4 -bottom-4 text-gold">♦</div>
+                        <div class="text-gold font-serif text-4xl font-bold">₹1,50,000+</div>
+                        <div class="text-parchment font-semibold text-sm uppercase tracking-wider">Total Prize Pool</div>
+                        <p class="text-xs text-parchment-muted">Equity backing, cash prizes, mentorship & domain credits</p>
+                    </div>
+
+                    <div class="brass-box p-6 rounded-xl text-center space-y-2 relative overflow-hidden group">
+                        <div class="suit-watermark absolute -right-4 -bottom-4 text-gold">♣</div>
+                        <div class="text-gold font-serif text-4xl font-bold">48 Hours</div>
+                        <div class="text-parchment font-semibold text-sm uppercase tracking-wider">Non-Stop Sprint</div>
+                        <p class="text-xs text-parchment-muted">Continuous access to NSUT labs, mentors & high-speed hubs</p>
+                    </div>
+
+                    <div class="brass-box p-6 rounded-xl text-center space-y-2 relative overflow-hidden group">
+                        <div class="suit-watermark absolute -right-4 -bottom-4 text-gold">♥</div>
+                        <div class="text-gold font-serif text-4xl font-bold">100+</div>
+                        <div class="text-parchment font-semibold text-sm uppercase tracking-wider">Top Innovators</div>
+                        <p class="text-xs text-parchment-muted">Selected developers, designers & founders from top tech colleges</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INTERACTIVE EVENT CARDS SECTION -->
+        <section id="events" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-7xl mx-auto space-y-16">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gold/20 pb-8">
+                    <div>
+                        <div class="text-xs font-mono text-gold tracking-widest uppercase mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-suit-spade text-poker-red"></i> High-Stakes Competition Roster
+                        </div>
+                        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-parchment">
+                            The 5 Official Event Hands
+                        </h2>
+                    </div>
+                    <p class="text-sm font-mono text-parchment-muted max-w-md">
+                        Click <strong class="text-gold">"Inspect Hand"</strong> on any event card to view full specifications, judges criteria, venue maps, and rulebook.
+                    </p>
+                </div>
+
+                <!-- Event Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="eventsContainer">
+                    
+                    <!-- EVENT CARD 1 -->
+                    <div class="brass-box rounded-2xl p-6 flex flex-col justify-between relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-lg bg-felt border border-gold/40 flex items-center justify-center text-poker-red font-serif text-2xl font-bold">♠</span>
+                                <span class="px-2.5 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">Solo or Pairs</span>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-gold uppercase tracking-wider block mb-1">Fri: 2 PM – 6 PM</span>
+                                <h3 class="font-serif text-2xl font-bold text-parchment group-hover:text-gold transition-colors">Rewind: Reverse Engineer It</h3>
+                            </div>
+                            <p class="text-sm text-parchment-muted leading-relaxed line-clamp-3">
+                                Receive a working web application as a black box with zero source code. You have 4 hours to rebuild it pixel-for-pixel using DevTools inspection only.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-gold/15 mt-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-parchment-dark">
+                                <i class="fa-solid fa-location-dot text-gold"></i> APJ 11 Lecture Hall, NSUT
+                            </div>
+                            <button onclick="openEventModal('rewind')" class="w-full py-2.5 rounded bg-mahogany-light hover:bg-gold hover:text-felt-dark border border-gold/40 text-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Inspect Hand
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- EVENT CARD 2 -->
+                    <div class="brass-box rounded-2xl p-6 flex flex-col justify-between relative group hover:-translate-y-2 transition-all duration-300 border-gold/70">
+                        <div class="absolute -top-3 right-6 bg-gold text-felt-dark font-mono text-[10px] uppercase font-bold px-3 py-0.5 rounded-full shadow">
+                            Flagship 48-Hour Sprint
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-lg bg-felt border border-gold/40 flex items-center justify-center text-gold font-serif text-2xl font-bold">♦</span>
+                                <span class="px-2.5 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">1 to 3 Members</span>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-gold uppercase tracking-wider block mb-1">Fri 9 AM – Sun 4 PM (48 Hrs)</span>
+                                <h3 class="font-serif text-2xl font-bold text-parchment group-hover:text-gold transition-colors">Zero Budget Startup</h3>
+                            </div>
+                            <p class="text-sm text-parchment-muted leading-relaxed line-clamp-3">
+                                Launch a real micro-product in 48 hours using strictly free-tier tools. Spending money equals instant disqualification. Traction with strangers is king.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-gold/15 mt-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-parchment-dark">
+                                <i class="fa-solid fa-location-dot text-gold"></i> Student Activity Centre (SAC) & Campus
+                            </div>
+                            <button onclick="openEventModal('zerobudget')" class="w-full py-2.5 rounded bg-mahogany-light hover:bg-gold hover:text-felt-dark border border-gold/40 text-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Inspect Hand
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- EVENT CARD 3 -->
+                    <div class="brass-box rounded-2xl p-6 flex flex-col justify-between relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-lg bg-felt border border-gold/40 flex items-center justify-center text-poker-red font-serif text-2xl font-bold">♣</span>
+                                <span class="px-2.5 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">Pairs Only</span>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-gold uppercase tracking-wider block mb-1">Sat: 10 AM – 3 PM</span>
+                                <h3 class="font-serif text-2xl font-bold text-parchment group-hover:text-gold transition-colors">Constraint Jam</h3>
+                            </div>
+                            <p class="text-sm text-parchment-muted leading-relaxed line-clamp-3">
+                                Build an app in 5 hours, but a wild constraint is revealed every hour (e.g. no mouse allowed, <50KB size limit, single color palette, offline only).
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-gold/15 mt-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-parchment-dark">
+                                <i class="fa-solid fa-location-dot text-gold"></i> APJ 04 Lecture Hall, NSUT
+                            </div>
+                            <button onclick="openEventModal('constraint')" class="w-full py-2.5 rounded bg-mahogany-light hover:bg-gold hover:text-felt-dark border border-gold/40 text-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Inspect Hand
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- EVENT CARD 4 -->
+                    <div class="brass-box rounded-2xl p-6 flex flex-col justify-between relative group hover:-translate-y-2 transition-all duration-300">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-lg bg-felt border border-gold/40 flex items-center justify-center text-poker-red font-serif text-2xl font-bold">♥</span>
+                                <span class="px-2.5 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">1 to 3 Members</span>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-gold uppercase tracking-wider block mb-1">Sat: 4 PM – 8 PM</span>
+                                <h3 class="font-serif text-2xl font-bold text-parchment group-hover:text-gold transition-colors">Break My Code</h3>
+                            </div>
+                            <p class="text-sm text-parchment-muted leading-relaxed line-clamp-3">
+                                Submit a mini-app in advance, then attack opposing apps in real time to uncover input flaws, crashes, and security vulnerabilities under responsible disclosure.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-gold/15 mt-6 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-mono text-parchment-dark">
+                                <i class="fa-solid fa-location-dot text-gold"></i> COE Block Lab 502 & Mini Audi
+                            </div>
+                            <button onclick="openEventModal('breakcode')" class="w-full py-2.5 rounded bg-mahogany-light hover:bg-gold hover:text-felt-dark border border-gold/40 text-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Inspect Hand
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- EVENT CARD 5 -->
+                    <div class="brass-box rounded-2xl p-6 flex flex-col justify-between relative group hover:-translate-y-2 transition-all duration-300 lg:col-span-2">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-lg bg-felt border border-gold/40 flex items-center justify-center text-gold font-serif text-2xl font-bold">🃏</span>
+                                <span class="px-2.5 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono">Solo Presenter</span>
+                            </div>
+                            <div>
+                                <span class="text-xs font-mono text-gold uppercase tracking-wider block mb-1">Sun: 3 PM – 6 PM</span>
+                                <h3 class="font-serif text-2xl font-bold text-parchment group-hover:text-gold transition-colors">Explain Like I'm Five: Tech Talk Battle</h3>
+                            </div>
+                            <p class="text-sm text-parchment-muted leading-relaxed">
+                                Pick a complex technical concept (APIs, Encryption, Recursion, Cloud Architecture) and break it down in 4 minutes to non-tech judges. Any technical jargon triggers an immediate buzzer alert!
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-gold/15 mt-6 sm:flex items-center justify-between gap-4 space-y-3 sm:space-y-0">
+                            <div class="flex items-center gap-2 text-xs font-mono text-parchment-dark">
+                                <i class="fa-solid fa-location-dot text-gold"></i> Main Auditorium, Admin Block (2nd Floor), NSUT Campus
+                            </div>
+                            <button onclick="openEventModal('eli5')" class="px-6 py-2.5 rounded bg-mahogany-light hover:bg-gold hover:text-felt-dark border border-gold/40 text-gold font-mono text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye"></i> Inspect Hand
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SCHEDULE TIMELINE SECTION -->
+        <section id="schedule" class="py-20 px-4 sm:px-6 lg:px-8 bg-mahogany-dark/80 border-t border-b border-gold/20">
+            <div class="max-w-5xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4">
+                    <span class="text-xs font-mono text-gold tracking-widest uppercase bg-felt px-3 py-1 rounded border border-gold/30">
+                        ♣ Tournament Schedule
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-parchment">
+                        48-Hour High-Stakes Timeline
+                    </h2>
+                    <p class="text-parchment-muted font-sans text-sm sm:text-base max-w-xl mx-auto">
+                        Filter by day to view specific events and official NSUT campus venues.
+                    </p>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 pt-4" id="timelineTabs">
+                        <button onclick="filterTimeline('all')" class="timeline-tab-btn px-5 py-2 rounded-full border border-gold/40 text-xs font-mono uppercase tracking-wider transition-all bg-gold text-felt-dark font-bold" data-day="all">All Days</button>
+                        <button onclick="filterTimeline('day1')" class="timeline-tab-btn px-5 py-2 rounded-full border border-gold/40 text-xs font-mono uppercase tracking-wider transition-all bg-mahogany text-parchment hover:border-gold" data-day="day1">Day 1 (Fri, Oct 23)</button>
+                        <button onclick="filterTimeline('day2')" class="timeline-tab-btn px-5 py-2 rounded-full border border-gold/40 text-xs font-mono uppercase tracking-wider transition-all bg-mahogany text-parchment hover:border-gold" data-day="day2">Day 2 (Sat, Oct 24)</button>
+                        <button onclick="filterTimeline('day3')" class="timeline-tab-btn px-5 py-2 rounded-full border border-gold/40 text-xs font-mono uppercase tracking-wider transition-all bg-mahogany text-parchment hover:border-gold" data-day="day3">Day 3 (Sun, Oct 25)</button>
+                    </div>
+                </div>
+
+                <!-- Timeline Items List -->
+                <div class="relative border-l-2 border-gold/30 ml-4 sm:ml-32 space-y-8" id="timelineContainer">
+                    
+                    <!-- Item 1 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day1">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Fri 09:00 AM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase">Day 1 Opening & Flagship Launch</span>
+                                <span class="text-xs font-mono bg-gold/10 px-2 py-0.5 rounded text-gold border border-gold/30">SAC & Campus</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Zero Budget Startup Kickoff</h3>
+                            <p class="text-xs text-parchment-muted">48-Hour timer begins for micro-product development. All teams register micro-domain ideas.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day1">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Fri 02:00 PM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase">4-Hour Reverse Engineering Challenge</span>
+                                <span class="text-xs font-mono bg-gold/10 px-2 py-0.5 rounded text-gold border border-gold/30">APJ 11 Lecture Hall</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Rewind: Reverse Engineer It</h3>
+                            <p class="text-xs text-parchment-muted">Black box URLs distributed. 4 hours to rebuild the target frontend without source code access.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day2">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Sat 10:00 AM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase">5-Hour Live Constraint Sprint</span>
+                                <span class="text-xs font-mono bg-gold/10 px-2 py-0.5 rounded text-gold border border-gold/30">APJ 04 Lecture Hall</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Constraint Jam</h3>
+                            <p class="text-xs text-parchment-muted">Hourly dynamic constraints revealed on stage screen. Live audience voting for funny hacks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day2">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Sat 04:00 PM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase">Red-Teaming Security Arena</span>
+                                <span class="text-xs font-mono bg-gold/10 px-2 py-0.5 rounded text-gold border border-gold/30">COE Lab 502 & Mini Audi</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Break My Code</h3>
+                            <p class="text-xs text-parchment-muted">Responsible disclosure bug hunting across opponent applications. Points awarded per verified crash.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day3">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Sun 03:00 PM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase">No-Jargon Pitch Arena</span>
+                                <span class="text-xs font-mono bg-gold/10 px-2 py-0.5 rounded text-gold border border-gold/30">Main Audi (Admin Block 2nd Fl)</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Explain Like I'm Five (ELI5)</h3>
+                            <p class="text-xs text-parchment-muted">4-minute technical pitch battle judged by non-tech panel with real-time jargon buzzers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="timeline-item relative pl-6 sm:pl-8 group" data-day="day3">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold border-4 border-felt"></div>
+                        <div class="hidden sm:block absolute -left-32 top-1 w-24 text-right font-mono text-xs text-gold">
+                            Sun 05:00 PM
+                        </div>
+                        <div class="brass-box p-5 rounded-xl space-y-2 bg-felt-light border-gold">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono text-gold uppercase font-bold">Grand Finale & Award Ceremony</span>
+                                <span class="text-xs font-mono bg-gold text-felt-dark font-bold px-2 py-0.5 rounded">Main Auditorium</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-parchment">Prize Distribution & eCell NSUT Pitch Night</h3>
+                            <p class="text-xs text-parchment-muted">Announcement of winner payouts, equity backing, and closing keynotes.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PARTICIPANT RULES & BRIEFING SECTION -->
+        <section id="rules" class="py-20 px-4 sm:px-6 lg:px-8 border-b border-gold/20">
+            <div class="max-w-6xl mx-auto space-y-12">
+                <div class="text-center space-y-3">
+                    <span class="text-xs font-mono text-gold tracking-widest uppercase bg-mahogany px-3 py-1 rounded border border-gold/30">
+                        ♥ House Rules & Guidelines
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-parchment">
+                        Participant Briefing Checklist
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Rule 1 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">01</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Gear & Hardware Requirements</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            Bring your own laptop, charger, and valid college physical ID card. Campus Wi-Fi is provided, but carrying a personal mobile hotspot is recommended for high bandwidth tasks.
+                        </p>
+                    </div>
+
+                    <!-- Rule 2 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">02</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Secret Constraints</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            Constraints for Rewind, Constraint Jam, and Break My Code are revealed strictly at start time. Nothing to prepare in advance—only your core problem-solving capability.
+                        </p>
+                    </div>
+
+                    <!-- Rule 3 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">03</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Multi-Event Entry</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            Participants can enter up to two events provided schedule timings do not overlap. Note that Zero Budget Startup runs continuously across all 3 days.
+                        </p>
+                    </div>
+
+                    <!-- Rule 4 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">04</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Submission Defense</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            All submissions must be original work. You may use public documentation and developer tools, but you must be able to explain every line of code to the judges upon request.
+                        </p>
+                    </div>
+
+                    <!-- Rule 5 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">05</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Zero-Spend Integrity</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            For Zero Budget Startup, spending even 1 Rupee on ads, domains, or premium services results in immediate disqualification. Free tiers and organic hustle only.
+                        </p>
+                    </div>
+
+                    <!-- Rule 6 -->
+                    <div class="brass-box p-6 rounded-xl space-y-3">
+                        <div class="w-8 h-8 rounded bg-gold/20 text-gold flex items-center justify-center font-mono font-bold text-sm">06</div>
+                        <h4 class="font-serif font-bold text-lg text-parchment">Responsible Disclosure</h4>
+                        <p class="text-xs text-parchment-muted leading-relaxed">
+                            For Break My Code, attacks must strictly be confined to assigned opponent applications. Attacks against event infrastructure or non-participating servers are illegal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY GRID SECTION -->
+        <section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+            <div class="max-w-6xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-xs font-mono text-gold tracking-widest uppercase bg-mahogany px-3 py-1 rounded border border-gold/30">
+                        🃏 Visual Deck & Vault
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-parchment">
+                        Past eCell NSUT Arenas
+                    </h2>
+                    <p class="text-sm font-mono text-parchment-muted">
+                        Moments from previous high-stakes pitch sessions, hackathons, and lecture hall sprints.
+                    </p>
+                </div>
+
+                <!-- Gallery Polaroid Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Photo 1 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80', 'APJ Lecture Hall Sprints', 'Engineers building under intense time pressure at NSUT APJ Lecture Complex.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="APJ Lecture Hall Sprints" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">APJ Lecture Hall Sprints</span>
+                            <span class="font-mono text-[10px] text-felt/70">NSUT Campus • Reverse Eng Arena</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=1200&q=80', 'Keynote & Founder Panels', 'Ventures founders sharing high-stakes pitch strategies in NSUT Main Audi.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:-rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" alt="Keynote & Founder Panels" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">Keynote & Founder Pitches</span>
+                            <span class="font-mono text-[10px] text-felt/70">Main Auditorium Admin Block</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80', '48-Hour Zero Budget Teams', 'Teams working continuously in Student Activity Centre (SAC) hub.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Zero Budget Startup Sprints" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">Zero Budget War Room</span>
+                            <span class="font-mono text-[10px] text-felt/70">Student Activity Centre (SAC)</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80', 'Live Code Red-Teaming', 'COE Computer Labs hosting Break My Code security challenges.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:-rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Code Defense Arena" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">Red-Teaming Security Hub</span>
+                            <span class="font-mono text-[10px] text-felt/70">COE Building Lab 502</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 5 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80', 'ELI5 Jargon-Free Pitch Battle', 'Presenters defending technical models without using industry buzzwords.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80" alt="ELI5 Talk Arena" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">ELI5 Tech Talk Stage</span>
+                            <span class="font-mono text-[10px] text-felt/70">Main Audi Stage Floor</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 6 -->
+                    <div onclick="openLightbox('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80', 'Prize Distribution & Gala', 'Winners receiving equity cheques and trophies from eCell NSUT leadership.')" class="bg-parchment p-4 rounded-sm shadow-2xl hover:scale-105 hover:-rotate-1 transition-all cursor-pointer group">
+                        <div class="aspect-4/3 overflow-hidden bg-mahogany">
+                            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="Prize Award Night" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <span class="font-serif text-felt-dark font-bold text-sm block">High-Stakes Podium</span>
+                            <span class="font-mono text-[10px] text-felt/70">InnovateX Championship Night</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- REGISTRATION FORM SECTION -->
+        <section id="register" class="py-24 px-4 sm:px-6 lg:px-8 bg-mahogany-dark/90 border-t border-gold/30 relative">
+            <div class="max-w-4xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-felt border border-gold/50 text-xs font-mono text-gold uppercase tracking-widest">
+                        <span>♠ Reserve Your Spot at the Table</span>
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-parchment">
+                        Official Entry Registration
+                    </h2>
+                    <p class="text-parchment-muted font-sans text-sm sm:text-base max-w-lg mx-auto">
+                        Fill out your team details below. Live validation ensures compliance with event rules and team limits.
+                    </p>
+                </div>
+
+                <!-- Registration Card Form Container -->
+                <div class="brass-box p-6 sm:p-10 rounded-2xl shadow-poker relative overflow-hidden">
+                    <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-6">
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Full Name -->
+                            <div class="space-y-2">
+                                <label for="fullName" class="block font-mono text-xs uppercase tracking-wider text-gold">Full Name *</label>
+                                <input type="text" id="fullName" required placeholder="e.g. Aarav Sharma" 
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment placeholder-parchment-dark/50 focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                <span id="fullNameError" class="text-poker-red text-xs font-mono hidden">Please enter your full name.</span>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="space-y-2">
+                                <label for="email" class="block font-mono text-xs uppercase tracking-wider text-gold">College / Personal Email *</label>
+                                <input type="email" id="email" required placeholder="e.g. aarav.nsut2026@gmail.com" 
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment placeholder-parchment-dark/50 focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                <span id="emailError" class="text-poker-red text-xs font-mono hidden">Enter a valid email address.</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Phone Number -->
+                            <div class="space-y-2">
+                                <label for="phone" class="block font-mono text-xs uppercase tracking-wider text-gold">WhatsApp / Mobile Number *</label>
+                                <input type="tel" id="phone" required placeholder="10-digit phone number" 
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment placeholder-parchment-dark/50 focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                <span id="phoneError" class="text-poker-red text-xs font-mono hidden">Enter a valid 10-digit phone number.</span>
+                            </div>
+
+                            <!-- Event Selection -->
+                            <div class="space-y-2">
+                                <label for="eventSelect" class="block font-mono text-xs uppercase tracking-wider text-gold">Select Event Hand *</label>
+                                <select id="eventSelect" required onchange="updateTeamConstraints()"
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                    <option value="" disabled selected>-- Choose High-Stakes Competition --</option>
+                                    <option value="rewind">♠ Rewind: Reverse Engineer It (Solo / Pair)</option>
+                                    <option value="zerobudget">♦ Zero Budget Startup (1 - 3 Members)</option>
+                                    <option value="constraint">♣ Constraint Jam (Pairs Only)</option>
+                                    <option value="breakcode">♥ Break My Code (1 - 3 Members)</option>
+                                    <option value="eli5">🃏 ELI5: Tech Talk Battle (Solo Presenter)</option>
+                                </select>
+                                <span id="eventError" class="text-poker-red text-xs font-mono hidden">Please select an event.</span>
+                            </div>
+                        </div>
+
+                        <!-- Team Details Block -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                            <!-- Team Name -->
+                            <div class="space-y-2">
+                                <label for="teamName" class="block font-mono text-xs uppercase tracking-wider text-gold">Team / Project Handle *</label>
+                                <input type="text" id="teamName" required placeholder="e.g. RoyalFlush_Devs" 
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment placeholder-parchment-dark/50 focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                <span id="teamNameError" class="text-poker-red text-xs font-mono hidden">Enter your team name.</span>
+                            </div>
+
+                            <!-- Team Size (Auto-validated) -->
+                            <div class="space-y-2">
+                                <label for="teamSize" class="block font-mono text-xs uppercase tracking-wider text-gold">Team Size *</label>
+                                <input type="number" id="teamSize" min="1" max="3" value="1" required 
+                                    class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                                <span id="teamConstraintHint" class="text-xs font-mono text-gold-light block">Select an event to see dynamic team rules.</span>
+                                <span id="teamSizeError" class="text-poker-red text-xs font-mono hidden">Invalid team size for selected event.</span>
+                            </div>
+                        </div>
+
+                        <!-- College / Institutional Details -->
+                        <div class="space-y-2">
+                            <label for="collegeName" class="block font-mono text-xs uppercase tracking-wider text-gold">College / University Name *</label>
+                            <input type="text" id="collegeName" required placeholder="Netaji Subhas University of Technology (NSUT) / Other College" 
+                                class="w-full bg-mahogany-dark border border-gold/30 rounded-lg px-4 py-3 text-parchment placeholder-parchment-dark/50 focus:outline-none focus:border-gold transition-colors font-sans text-sm">
+                        </div>
+
+                        <!-- Checkboxes & Confirmations -->
+                        <div class="space-y-3 pt-2">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="checkId" required class="mt-1 accent-gold rounded">
+                                <span class="text-xs text-parchment-muted font-sans">
+                                    I confirm that my team members will carry a personal laptop, charger, and valid college ID card to NSUT campus.
+                                </span>
+                            </label>
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="checkOriginal" required class="mt-1 accent-gold rounded">
+                                <span class="text-xs text-parchment-muted font-sans">
+                                    I agree to the eCell NSUT house rules, zero-spend guidelines, and defense explanation requirements.
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full py-4 rounded-lg bg-gradient-to-r from-gold-dark via-gold to-gold-antique text-felt-dark font-mono font-extrabold text-sm uppercase tracking-widest shadow-gold-glow hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-signature"></i> Confirm High-Stakes Entry
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- DYNAMIC EVENT INFO MODAL -->
+    <div id="eventModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-all duration-300">
+        <div class="brass-box w-full max-w-2xl rounded-2xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeEventModal()" aria-label="Close modal" class="absolute top-4 right-4 text-parchment-muted hover:text-gold text-2xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3">
+                <span id="modalSuit" class="text-3xl font-serif text-gold">♠</span>
+                <div>
+                    <span id="modalTiming" class="text-xs font-mono text-gold uppercase tracking-wider block">Timing Info</span>
+                    <h3 id="modalTitle" class="font-serif text-2xl font-bold text-parchment">Event Title</h3>
+                </div>
+            </div>
+
+            <div class="space-y-4 text-sm text-parchment-muted">
+                <div>
+                    <h4 class="font-mono text-xs uppercase text-gold mb-1">Official Brief</h4>
+                    <p id="modalBrief" class="leading-relaxed"></p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-mahogany-dark/80 p-4 rounded-lg border border-gold/20">
+                    <div>
+                        <span class="font-mono text-xs text-gold uppercase block">Venue</span>
+                        <span id="modalVenue" class="font-bold text-parchment text-xs"></span>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-gold uppercase block">Team Limit</span>
+                        <span id="modalTeam" class="font-bold text-parchment text-xs"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-mono text-xs uppercase text-gold mb-1">Scoring Criteria</h4>
+                    <ul id="modalScoring" class="list-disc list-inside space-y-1 font-mono text-xs text-parchment"></ul>
+                </div>
+
+                <div>
+                    <h4 class="font-mono text-xs uppercase text-gold mb-1">Key Rules</h4>
+                    <p id="modalRules" class="text-xs leading-relaxed text-parchment-muted"></p>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-gold/20 flex flex-col sm:flex-row gap-3">
+                <button id="modalRegisterBtn" onclick="selectEventFromModal()" class="w-full sm:w-auto px-6 py-2.5 rounded bg-gold text-felt-dark font-mono font-bold text-xs uppercase tracking-wider hover:bg-gold-light transition-all text-center">
+                    Register For This Hand
+                </button>
+                <button onclick="closeEventModal()" class="w-full sm:w-auto px-6 py-2.5 rounded bg-mahogany text-parchment font-mono text-xs uppercase hover:bg-mahogany-light transition-all text-center">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL FOR GALLERY -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="relative max-w-4xl w-full text-center space-y-4">
+            <button onclick="closeLightbox()" aria-label="Close lightbox modal" class="absolute -top-10 right-0 text-gold text-3xl hover:text-parchment">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightboxImage" src="" alt="Gallery Preview" class="max-h-[75vh] mx-auto rounded border border-gold/50 shadow-2xl">
+            <div>
+                <h4 id="lightboxCaption" class="font-serif text-xl font-bold text-parchment"></h4>
+                <p id="lightboxSub" class="font-mono text-xs text-gold mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM TOAST BANNER -->
+    <div id="toastBanner" class="fixed bottom-6 right-6 z-50 transform translate-y-32 opacity-0 transition-all duration-500 max-w-md">
+        <div class="brass-box p-4 rounded-xl flex items-start gap-4 shadow-2xl bg-felt-dark border-2 border-gold">
+            <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center text-gold text-xl shrink-0">
+                <i class="fa-solid fa-poker-chip chip-spin"></i>
+            </div>
+            <div class="space-y-1">
+                <h4 id="toastTitle" class="font-serif font-bold text-sm text-gold">Hand Submitted Successfully!</h4>
+                <p id="toastMessage" class="text-xs text-parchment-muted">You are now checked in for InnovateX 2026 at eCell NSUT.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-mahogany-dark border-t-2 border-gold/40 text-parchment-muted text-xs font-mono py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            
+            <div class="space-y-3 md:col-span-2">
+                <div class="flex items-center gap-2">
+                    <span class="text-gold font-serif text-2xl font-bold">♠</span>
+                    <span class="font-serif font-bold text-lg text-parchment">eCell NSUT</span>
+                </div>
+                <p class="text-parchment-muted text-xs leading-relaxed max-w-md font-sans">
+                    The Entrepreneurship Cell, Netaji Subhas University of Technology (NSUT). Fostering high-stakes innovation, startup incubation, and practical builder events in New Delhi.
+                </p>
+                <div class="text-parchment-dark text-[11px] space-y-1">
+                    <p><i class="fa-solid fa-location-dot text-gold mr-1"></i> Netaji Subhas University of Technology, Azad Hind Fauj Marg, Sector-3, Dwarka, New Delhi - 110078</p>
+                    <p><i class="fa-solid fa-envelope text-gold mr-1"></i> Contact: <a href="mailto:ecell.care@gmail.com" class="text-gold hover:underline">ecell.care@gmail.com</a> | Web: <a href="https://ecellnsut.in" target="_blank" rel="noopener noreferrer" class="text-gold hover:underline">ecellnsut.in</a></p>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <span class="text-gold uppercase tracking-wider block font-bold">Quick Navigation</span>
+                <ul class="space-y-1.5">
+                    <li><a href="#about" class="hover:text-gold transition-colors">♠ Overview</a></li>
+                    <li><a href="#events" class="hover:text-gold transition-colors">♦ Events Deck</a></li>
+                    <li><a href="#schedule" class="hover:text-gold transition-colors">♣ Event Timeline</a></li>
+                    <li><a href="#gallery" class="hover:text-gold transition-colors">♥ Visual Vault</a></li>
+                    <li><a href="#register" class="hover:text-gold transition-colors">🃏 Registration Form</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-2">
+                <span class="text-gold uppercase tracking-wider block font-bold">Connect With eCell</span>
+                <div class="flex items-center gap-4 text-lg text-gold pt-1">
+                    <a href="https://ecellnsut.in" target="_blank" rel="noopener" aria-label="Official Website" class="hover:text-parchment"><i class="fa-solid fa-globe"></i></a>
+                    <a href="#" aria-label="LinkedIn Profile" class="hover:text-parchment"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" aria-label="Instagram Page" class="hover:text-parchment"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter X" class="hover:text-parchment"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <p class="text-[11px] text-parchment-dark pt-2">
+                    Official Portal for InnovateX 2026 Arena.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-gold/20 pt-6 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
+            <p>© 2026 Entrepreneurship Cell (eCell) NSUT, Dwarka. All rights reserved.</p>
+            <p class="text-gold/80">High-Stakes Innovation Arena • Bet On Your Ideas</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT INTERACTIVE LOGIC -->
+    <script>
+        // EVENT DATASET
+        const eventsData = {
+            rewind: {
+                suit: '♠',
+                timing: 'Friday: 2:00 PM – 6:00 PM',
+                title: 'Rewind: Reverse Engineer It',
+                brief: 'Each team receives a fully working web application as a black box with zero access to source code. You have four hours to reverse-engineer and rebuild it as closely as possible using browser inspect tools, DOM layout analysis, and style replication.',
+                venue: 'APJ 11 Lecture Hall, NSUT',
+                team: 'Solo or Pairs (1 - 2 Members)',
+                scoring: [
+                    'Visual & Pixel-Perfect Match (40%)',
+                    'Interactive Behavior & State Handling (40%)',
+                    'Performance & Page Speed Matching (20%)'
+                ],
+                rules: 'Strictly 4 hours. Only browser inspection and DevTools allowed. No external website cloning tools or scraping scripts permitted.',
+                minTeam: 1,
+                maxTeam: 2
+            },
+            zerobudget: {
+                suit: '♦',
+                timing: 'Friday 9:00 AM – Sunday 4:00 PM (48 Hours Continuous)',
+                title: 'Zero Budget Startup',
+                brief: 'Launch a real micro-product (tool, web service, or landing page) in 48 hours using strictly free tier resources. Spending even 1 Rupee means instant disqualification. Traction with strangers is mandatory.',
+                venue: 'Student Activity Centre (SAC) & Campus Wide',
+                team: '1 to 3 Members',
+                scoring: [
+                    'Real Stranger User Adoption & Proof (40%)',
+                    'Idea Originality & Problem Fit (30%)',
+                    'Execution Quality under Free Tier (30%)'
+                ],
+                rules: 'At least 10 real strangers must use your tool (proven via live analytics screenshot). Zero monetary spending allowed.',
+                minTeam: 1,
+                maxTeam: 3
+            },
+            constraint: {
+                suit: '♣',
+                timing: 'Saturday: 10:00 AM – 3:00 PM',
+                title: 'Constraint Jam',
+                brief: 'Build a small application in 5 hours, but a surprise technical constraint is revealed every hour (e.g., no mouse support allowed, page size strictly under 50 KB, offline operation, or monochrome palette).',
+                venue: 'APJ 04 Lecture Hall, NSUT',
+                team: 'Pairs Only (Exact 2 Members)',
+                scoring: [
+                    'Adaptation to Secret Hourly Constraints (50%)',
+                    'Audience Live Comedy & Clever Hack Vote (30%)',
+                    'Working Feature Set (20%)'
+                ],
+                rules: 'Teams must adjust their codebase instantly as hourly constraints pop up on screen. Audience live votes on the cleverest hacks.',
+                minTeam: 2,
+                maxTeam: 2
+            },
+            breakcode: {
+                suit: '♥',
+                timing: 'Saturday: 4:00 PM – 8:00 PM',
+                title: 'Break My Code',
+                brief: 'Teams submit a small app in advance, then enter a 4-hour live arena attacking opposing apps to discover crashes, unhandled edge cases, and input security vulnerabilities.',
+                venue: 'COE Block Lab 502 & Mini Audi',
+                team: '1 to 3 Members',
+                scoring: [
+                    'Points per Verified Bug / Crash Found in Rivals (50%)',
+                    'Points for Unbroken Defense in Your Own App (50%)'
+                ],
+                rules: 'Responsible disclosure only. Report every bug directly to organizers and attack only designated opponent assignments.',
+                minTeam: 1,
+                maxTeam: 3
+            },
+            eli5: {
+                suit: '🃏',
+                timing: 'Sunday: 3:00 PM – 6:00 PM',
+                title: 'Explain Like I\'m Five: Tech Talk Battle',
+                brief: 'Select a hard technical topic (e.g. APIs, Encryption, Recursion, Cloud Servers) and explain it in four minutes to a panel featuring non-technical judges. A buzzer sounds whenever technical jargon is used!',
+                venue: 'Main Auditorium, Admin Block (2nd Floor), NSUT',
+                team: 'Solo Presenter (1 Member)',
+                scoring: [
+                    'Clarity & Jargon Avoidance (40%)',
+                    'Technical Accuracy (30%)',
+                    'Creativity of Analogies (30%)'
+                ],
+                rules: 'Strictly 4 minutes. Using industry jargon triggers a buzzer penalty. Audience picks the most understandable pitch.',
+                minTeam: 1,
+                maxTeam: 1
+            }
+        };
+
+        let currentActiveModalEvent = 'rewind';
+
+        // COUNTDOWN TIMER LOGIC
+        function initCountdown() {
+            // Target date: October 23, 2026, 09:00:00 AM IST
+            const targetDate = new Date('2026-10-23T09:00:00+05:30').getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    document.getElementById('timerDays').innerText = "00";
+                    document.getElementById('timerHours').innerText = "00";
+                    document.getElementById('timerMinutes').innerText = "00";
+                    document.getElementById('timerSeconds').innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('timerDays').innerText = String(days).padStart(2, '0');
+                document.getElementById('timerHours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('timerMinutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('timerSeconds').innerText = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // EVENT MODAL CONTROLS
+        function openEventModal(eventKey) {
+            const data = eventsData[eventKey];
+            if (!data) return;
+
+            currentActiveModalEvent = eventKey;
+            document.getElementById('modalSuit').innerText = data.suit;
+            document.getElementById('modalTiming').innerText = data.timing;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalBrief').innerText = data.brief;
+            document.getElementById('modalVenue').innerText = data.venue;
+            document.getElementById('modalTeam').innerText = data.team;
+            document.getElementById('modalRules').innerText = data.rules;
+
+            const scoringList = document.getElementById('modalScoring');
+            scoringList.innerHTML = '';
+            data.scoring.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = item;
+                scoringList.appendChild(li);
+            });
+
+            document.getElementById('eventModal').classList.remove('hidden');
+        }
+
+        function closeEventModal() {
+            document.getElementById('eventModal').classList.add('hidden');
+        }
+
+        function selectEventFromModal() {
+            closeEventModal();
+            const selectElem = document.getElementById('eventSelect');
+            selectElem.value = currentActiveModalEvent;
+            updateTeamConstraints();
+            
+            // Scroll smoothly to registration
+            document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // SCHEDULE TIMELINE FILTER
+        function filterTimeline(day) {
+            // Update button UI
+            const buttons = document.querySelectorAll('.timeline-tab-btn');
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-day') === day) {
+                    btn.classList.remove('bg-mahogany', 'text-parchment');
+                    btn.classList.add('bg-gold', 'text-felt-dark', 'font-bold');
+                } else {
+                    btn.classList.remove('bg-gold', 'text-felt-dark', 'font-bold');
+                    btn.classList.add('bg-mahogany', 'text-parchment');
+                }
+            });
+
+            // Filter timeline elements
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach(item => {
+                if (day === 'all' || item.getAttribute('data-day') === day) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // LIGHTBOX CONTROLS
+        function openLightbox(imgUrl, caption, sub) {
+            document.getElementById('lightboxImage').src = imgUrl;
+            document.getElementById('lightboxCaption').innerText = caption;
+            document.getElementById('lightboxSub').innerText = sub;
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+
+        // REGISTRATION FORM DYNAMIC TEAM SIZE CONSTRAINTS
+        function updateTeamConstraints() {
+            const eventVal = document.getElementById('eventSelect').value;
+            const teamInput = document.getElementById('teamSize');
+            const hintElem = document.getElementById('teamConstraintHint');
+
+            if (!eventVal || !eventsData[eventVal]) {
+                hintElem.innerText = "Select an event to view team rules.";
+                return;
+            }
+
+            const data = eventsData[eventVal];
+            teamInput.min = data.minTeam;
+            teamInput.max = data.maxTeam;
+            teamInput.value = data.minTeam;
+
+            if (data.minTeam === data.maxTeam) {
+                hintElem.innerText = `Fixed team size: Exactly ${data.minTeam} member(s).`;
+            } else {
+                hintElem.innerText = `Allowed team size: ${data.minTeam} to ${data.maxTeam} member(s).`;
+            }
+        }
+
+        // FORM VALIDATION & HANDLING
+        function handleRegistration(e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const eventSelect = document.getElementById('eventSelect').value;
+            const teamName = document.getElementById('teamName').value.trim();
+            const teamSize = parseInt(document.getElementById('teamSize').value, 10);
+
+            // Simple Email Regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // Phone 10 Digits
+            const phoneRegex = /^[0-9]{10}$/;
+
+            // Validate Full Name
+            if (!fullName) {
+                document.getElementById('fullNameError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('fullNameError').classList.add('hidden');
+            }
+
+            // Validate Email
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('emailError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('emailError').classList.add('hidden');
+            }
+
+            // Validate Phone
+            if (!phone || !phoneRegex.test(phone.replace(/[- ]/g, ''))) {
+                document.getElementById('phoneError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('phoneError').classList.add('hidden');
+            }
+
+            // Validate Event Selection
+            if (!eventSelect) {
+                document.getElementById('eventError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('eventError').classList.add('hidden');
+            }
+
+            // Validate Team Name
+            if (!teamName) {
+                document.getElementById('teamNameError').classList.remove('hidden');
+                isValid = false;
+            } else {
+                document.getElementById('teamNameError').classList.add('hidden');
+            }
+
+            // Validate Team Size against active event bounds
+            if (eventSelect && eventsData[eventSelect]) {
+                const rules = eventsData[eventSelect];
+                if (teamSize < rules.minTeam || teamSize > rules.maxTeam) {
+                    document.getElementById('teamSizeError').innerText = `Team size for ${rules.title} must be between ${rules.minTeam} and ${rules.maxTeam}.`;
+                    document.getElementById('teamSizeError').classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    document.getElementById('teamSizeError').classList.add('hidden');
+                }
+            }
+
+            if (!isValid) return;
+
+            // Trigger Custom Toast Notification
+            showToast("Hand Checked In!", `Welcome ${fullName} (${teamName}). Your entry for ${eventsData[eventSelect].title} has been logged for Oct 23 at NSUT.`);
+
+            // Reset Form
+            document.getElementById('registrationForm').reset();
+            document.getElementById('teamConstraintHint').innerText = "Select an event to see dynamic team rules.";
+        }
+
+        // CUSTOM TOAST CONTROLLER
+        function showToast(title, message) {
+            const toast = document.getElementById('toastBanner');
+            document.getElementById('toastTitle').innerText = title;
+            document.getElementById('toastMessage').innerText = message;
+
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }, 5000);
+        }
+
+        // DOCUMENT INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            initCountdown();
+
+            // Mobile menu drawer handler
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Close modals on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeEventModal();
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
